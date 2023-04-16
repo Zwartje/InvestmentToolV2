@@ -1,0 +1,105 @@
+
+\chapter{A Logistic Regression Model for Trend Identification}
+
+One of the most important purposes for the trend identification is to forecast the type of trend given a set of selected risk drivers. That is, by making use of the information from historical data, we need a model that tells the most probable trend given the current market conditions. Given the two possible values for a trend (either upwards or downwards), the \textit{logistic regression model} can be a suitable candidate. 
+
+\section{Generic Approach}
+
+The binomial logistic regression (i.e. dependent variable takes only 2 states) usually takes the following form: 
+
+\begin{align*}
+	p(x) = \frac{1}{1+e^{-\mathbf{\beta}\cdot\mathbf{X}}}, 
+\end{align*}
+where
+\begin{itemize}
+	\item $p(x)$ is the probability that the dependent variable $Y$ takes the value 1, 
+	\item $\mathbf{\beta}$ is a vector of coefficients to be estimated, and
+	\item $\mathbf{X}$ is the vector of risk drivers. 
+\end{itemize}
+
+We will start with the logistic regression in its simplest form. Building the model would consist of the following steps: 
+\begin{enumerate}
+	\item \textit{Data collection and processing}: relevant data should be schematically collected, including a.o. the risk driver data. The data are then processed to arrive at the final formats, e.g. data frequency, MA horizon, etc. 
+	\item \textit{Risk driver selection}: the logit model is fit and the optimal set of risk drivers are chosen based on some criteria on e.g. goodness of fit or a performance measure. 
+	\item \textit{Final model fit and prediction}: The model is then calibrated based on the final risk driver selection and can be used for prediction. 
+\end{enumerate} 
+
+\section{Risk Driver: Forms}
+Intuitively, economic and financial variables are the most suitable candidates since the prices of financial assets are usually strongly influenced by them. Other variables, like a binary geopolitical indicator, should also be considered. A key question is however how these variables, which are usually numerical, should be included in the model. For instance, should we include the CPI by itself, or the relative changes w.r.t. last month / year? Should it be a warning signal if the market interest rates are quite high and the 10Y-3M spread has been deep negative? How do you further judge whether a rate level is "high" or not? Does a burnout effect exist in the market regarding a crisis or a market anomaly? These questions should be considered in order to transform the risk drivers in the right form. 
+
+In general, the following can be considered: \footnote{This section is motivated and facilitated by ChatGPT (july 2023). }
+\begin{enumerate}
+	\item \textbf{Unchanged format}: the variable is used as it is, i.e. by the value itself and without any further processing. 
+	\item \textbf{Relative change}: the relative change of the variable w.r.t. the last month / year is used. 
+	\item \textbf{Quantiles}: the relative position of the variable in the past certain period (e.g. 10 years) is used. 
+	\item \textbf{Scenario-dependent}: this can be in many forms. One possibility is to count the duration from the start of a certain event, e.g. the outburst of a crisis or the start of a(n) upward / downward trend. 
+	\item \textbf{Comparison to expectation}: It is used whether the actual variable is higher or lower than the market expectation for it. However, it should be noted that such market expectations data are usually difficult to access and may not be 
+\end{enumerate}
+
+\section{Risk Driver: List of Candidates for Stock Markets}
+
+In this section we include plausible candidates as the risk driver, which can be further classified into 2 groups: economic and financial. The purpose is to outline a generic list, independent of certain countries / regions, and hence it should be applicable to most developed markets. 
+The focus is primarily on the stock markets. We first focus on the general market indices, after which we then delve into the cases of specific companies on an individual level. 
+
+\begin{enumerate}
+	\item \textbf{Economic variables}: 
+	\begin{itemize}
+		\item \textit{GDP growth}: Gross Domestic Product (GDP) growth reflects the overall health and expansion of the economy. Strong economic growth typically translates to higher corporate earnings, which can drive stock prices higher.
+		\item \textit{Inflation}: Inflation measures the general increase in prices over time. Moderate inflation is generally considered healthy for the economy and the stock market, but high or rapidly rising inflation can erode purchasing power and lead to uncertainties. Most importantly, it's usually  partly the target of the central banks to keep the inflation on a certain level. A too high or too low inflation may have important implications on the monitory policy. 
+		\item \textit{Unemployment rate}: The level of unemployment is an indicator of the overall labor market conditions. Lower unemployment rates suggest a healthier economy, as more people are employed and have disposable income to invest, which can positively influence the stock market.
+		\item \textit{Money supply}: An increase in the money supply can lead to increased liquidity in the financial system. When there is more money available, investors may have a greater capacity to purchase stocks, which can drive up stock prices. Moreover, an abundance of liquidity can contribute to positive investor sentiment and a willingness to invest in riskier assets like stocks.
+		\item \textit{Geopolitical factors}: International trade policies, tariffs, and political events can have a significant impact on global economic conditions and market sentiment. Trade disputes or geopolitical tensions can introduce uncertainty and volatility into the stock market.
+		\item \textit{Consumer confidence index}: The CCI serves as a leading indicator for consumer spending, which has a significant impact on economic growth and corporate earnings. The CCI is a measure of consumers' perceptions and sentiments about the current and future state of the economy and their personal financial situation. It is usually based on surveys that ask consumers about their outlook on economic conditions, job prospects, income expectations, and buying intentions.
+		\item \textit{Purchasing Managers' Index}: The Purchasing Managers' Index (PMI) is considered important for the stock market because it provides valuable insights into the health and performance of the manufacturing and services sectors of the economy. The PMI is an economic indicator that measures business activity, production levels, new orders, employment, and supplier deliveries in these sectors. It is based on surveys of purchasing managers in various industries.
+	\end{itemize}
+	\item \textbf{Financial variables}: 
+	\begin{itemize}
+		\item \textit{Interest rate levels}: Changes in interest rates can affect borrowing costs, corporate profitability, and investment decisions. Lower interest rates tend to stimulate economic activity and can be positive for stocks, while higher rates can increase borrowing costs and potentially dampen stock market performance.
+		\item \textit{Interest rate term structure}: the term structure of interest rates usually implies the market opinion on the economy expectations. It also typically indicates the costs of funds for different time horizons. 
+		\item \textit{Exchange rate}: FX rates affect the competitiveness of exports and imports for an open economy. Fluctuations in exchange rates can impact the trade balances and hence have an impact on the economy.
+		\item \textit{Commodity prices}: Commodities constitute the raw materials for the industrial production as well as for the economy. Shocks or irregular changes in the commodity prices may hence introduce volatilities in the stock market. 
+		\item \textit{Real estate prices}: The relationship between real estate prices and the stock market can be complicated. Still it is included in the list, as it has been an important factor in the current economy, in particular, real estates serve as an important source of collateral for borrowings, and deterioration in the real estate markets has been the key trigger for the 2008 financial crisis. 
+	\end{itemize}
+\end{enumerate}
+
+It should be noted that all these variables can be inter-correlated or, at least, they may arguably contain the same information. Multicolinearity should be checked in case of econometric analysis. 
+
+The aforementioned variables can be further classified into 3 categories: 
+\begin{enumerate}
+	\item \textit{Leading indicators}: such variables tend to change before the overall economy changes. They can provide early signals about the direction of the economy and are often used to predict future economic trends. Examples of leading indicators include:
+	\begin{itemize}
+		\item New housing permits
+		\item Consumer confidence index
+		\item Purchasing Managers' Index (PMI)
+		\item Most financial market variables, including a.o. stock market indices and interest rate term structure. 
+	\end{itemize}
+	\item \textit{Lagging indicators}: such variables change after the overall economy has already started to follow a particular trend. They confirm or validate the direction of the economy and are useful for assessing the current state of the economy. Examples of lagging indicators include:
+	\begin{itemize}
+		\item Unemployment rate
+		\item Consumer Price Index (CPI)
+		\item Gross Domestic Product (GDP)
+	\end{itemize}
+	Hence, when using such variables, the lagging effect must be taken into account. 
+\end{enumerate}
+
+Specifically for the U.S. stock market, the following table lists the  variables that are included as candidates, with relevant properties. 
+
+\begin{table}[!ht]
+	\begin{spacing}{1.5}
+	\centering
+	\begin{tabular}{l|l|l|l|l|l|l}
+		\hline
+		\textbf{Variable} & \textbf{Category} & \textbf{Code} & \textbf{Source} & \textbf{Frequency} & \textbf{Lag} & \textbf{Start date} \\ \hline
+		CPI & Econ / Inflation & CPIAUCSL & FRED & Monthly & 1M & ~ \\ \hline
+		GDP & Econ / GDP & ~ & ~ & ~ & ~ & ~ \\ \hline
+		Unemployment rate & Econ / Unemployment rate & UNRATE & FRED & Monthly & ~ & ~ \\ \hline
+		M2 & Econ / Money supply & M2SL & FRED & Monthly & ~ & ~ \\ \hline
+		Fed Policy rate & Fin / IR & ~ & ~ & ~ & ~ & ~ \\ \hline
+		~ & ~ & ~ & ~ & ~ & ~ & ~ \\ \hline
+	\end{tabular}
+	\caption{List of candidate variables for the U.S. stock market}
+	\label{tab:logit-US-candidate}
+	\end{spacing}
+\end{table}
+
+

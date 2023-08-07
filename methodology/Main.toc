@@ -3,8 +3,10 @@
 \contentsline {section}{\numberline {1.1}Reflection Points and Trends}{3}%
 \contentsline {section}{\numberline {1.2}Empirical Facts of Trends}{5}%
 \contentsline {subsection}{\numberline {1.2.1}Stock market indices}{5}%
-\contentsline {chapter}{\numberline {2}A Logistic Regression Model for Trend Identification}{7}%
-\contentsline {section}{\numberline {2.1}Generic Approach}{7}%
-\contentsline {section}{\numberline {2.2}Risk Driver: Forms}{7}%
-\contentsline {section}{\numberline {2.3}Risk Driver: List of Candidates for Stock Markets}{8}%
-\contentsline {fm}{Bibliography}{11}%
+\contentsline {subsubsection}{\numberline {1.2.1.1}S\&P 500}{5}%
+\contentsline {subsubsection}{\numberline {1.2.1.2}Dow Jones Industrial 30}{5}%
+\contentsline {chapter}{\numberline {2}A Logistic Regression Model for Trend Identification}{9}%
+\contentsline {section}{\numberline {2.1}Generic Approach}{9}%
+\contentsline {section}{\numberline {2.2}Risk Driver: Forms}{9}%
+\contentsline {section}{\numberline {2.3}Risk Driver: List of Candidates for Stock Markets}{10}%
+\contentsline {fm}{Bibliography}{13}%

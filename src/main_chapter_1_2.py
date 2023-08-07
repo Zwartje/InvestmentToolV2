@@ -4,7 +4,14 @@ import utils as ut
 from configparser import ConfigParser, ExtendedInterpolation
 import pandas as pd
 import os
+import matplotlib
 import matplotlib.pyplot as plt
+matplotlib.use('Agg')  # Set the non-interactive backend
+
+from tqdm import tqdm
+
+# Specifically to suppress the warning "A value is trying to be set on a copy of a slice from a DataFrame."
+pd.options.mode.chained_assignment = None  # 'warn', 'raise', None
 
 
 # read configuration
@@ -26,7 +33,7 @@ figure_folder = os.path.join(current_folder, '..', 'output', 'figures')
 if not os.path.exists(figure_folder):
     os.makedirs(figure_folder)
 
-for code in code_list:
+for code in tqdm(code_list, desc="Processing instruments in the code list"):
     price_raw = ds.download_stock_price_daily_close(code, start_date, end_date)
     RP_vector, RP_summary = trend.trend_identification_main(price_raw, False, window_in_days)
     trend.trend_plot_curve(RP_vector, RP_summary, window_in_days)
@@ -46,3 +53,6 @@ for code in code_list:
     # plt.show()
     plt.savefig(os.path.join(figure_folder, f"scatter_{fig_file_name}.png"))
     plt.close()
+
+# Reset the warning filter to default behavior
+pd.options.mode.chained_assignment = 'warn'

@@ -31,34 +31,34 @@ def find_RP(price, window_in_days):
     """
 
     RP_vector = pd.DataFrame(data=price.iloc[:, 0], index=price.index)
-    RP_vector["running_min"] = RP_vector.iloc[:, 0].rolling(window=window_in_days * 2, min_periods=window_in_days,
+    RP_vector.loc[:, "running_min"] = RP_vector.iloc[:, 0].rolling(window=window_in_days * 2, min_periods=window_in_days,
                                                             center=True).min()
-    RP_vector["running_max"] = RP_vector.iloc[:, 0].rolling(window=window_in_days * 2, min_periods=window_in_days,
+    RP_vector.loc[:, "running_max"] = RP_vector.iloc[:, 0].rolling(window=window_in_days * 2, min_periods=window_in_days,
                                                             center=True).max()
-    RP_vector['is_MIRP'] = (RP_vector['running_min'] == RP_vector.iloc[:, 0])
-    RP_vector['is_MARP'] = (RP_vector['running_max'] == RP_vector.iloc[:, 0])
-    RP_vector['is_RP'] = RP_vector.is_MIRP | RP_vector.is_MARP
+    RP_vector.loc[:, 'is_MIRP'] = (RP_vector.loc[:, 'running_min'] == RP_vector.iloc[:, 0])
+    RP_vector.loc[:, 'is_MARP'] = (RP_vector.loc[:, 'running_max'] == RP_vector.iloc[:, 0])
+    RP_vector.loc[:, 'is_RP'] = RP_vector.is_MIRP | RP_vector.is_MARP
 
     # RP_summary contains ONLY the reflection points, while RP_vector contains the entire price curve.
     RP_summary = RP_vector[RP_vector['is_RP']]
 
     # find validated reflection points. See the methodology documentation for more information.
 
-    RP_summary['is_MIRP_previous'] = RP_summary['is_MIRP'].shift(1)
-    RP_summary['is_MARP_previous'] = RP_summary['is_MARP'].shift(1)
-    RP_summary['is_MIRP_next'] = RP_summary['is_MIRP'].shift(-1)
-    RP_summary['is_MARP_next'] = RP_summary['is_MARP'].shift(-1)
-    RP_summary['is_duplicate_minimum'] = (RP_summary['is_MIRP'] & RP_summary['is_MIRP_previous']) | (
-                RP_summary['is_MIRP'] & RP_summary['is_MIRP_next'])
-    RP_summary['is_duplicate_maximum'] = (RP_summary['is_MARP'] & RP_summary['is_MARP_previous']) | (
-                RP_summary['is_MARP'] & RP_summary['is_MARP_next'])
-    RP_summary['is_duplicate'] = (RP_summary['is_duplicate_minimum']) | (RP_summary['is_duplicate_maximum'])
+    RP_summary.loc[:, 'is_MIRP_previous'] = RP_summary.loc[:, 'is_MIRP'].shift(1)
+    RP_summary.loc[:, 'is_MARP_previous'] = RP_summary.loc[:, 'is_MARP'].shift(1)
+    RP_summary.loc[:, 'is_MIRP_next'] = RP_summary.loc[:, 'is_MIRP'].shift(-1)
+    RP_summary.loc[:, 'is_MARP_next'] = RP_summary.loc[:, 'is_MARP'].shift(-1)
+    RP_summary.loc[:, 'is_duplicate_minimum'] = (RP_summary.loc[:, 'is_MIRP'] & RP_summary.loc[:, 'is_MIRP_previous']) | (
+                RP_summary.loc[:, 'is_MIRP'] & RP_summary.loc[:, 'is_MIRP_next'])
+    RP_summary.loc[:, 'is_duplicate_maximum'] = (RP_summary.loc[:, 'is_MARP'] & RP_summary.loc[:, 'is_MARP_previous']) | (
+                RP_summary.loc[:, 'is_MARP'] & RP_summary.loc[:, 'is_MARP_next'])
+    RP_summary.loc[:, 'is_duplicate'] = (RP_summary.loc[:, 'is_duplicate_minimum']) | (RP_summary.loc[:, 'is_duplicate_maximum'])
 
-    RP_summary['group'] = ((RP_summary['is_duplicate_minimum'] != RP_summary['is_duplicate_minimum'].shift()) | (
-                RP_summary['is_duplicate_maximum'] != RP_summary['is_duplicate_maximum'].shift())).cumsum()
-    RP_summary['is_vMIRP'] = RP_summary['is_MIRP']
+    RP_summary.loc[:, 'group'] = ((RP_summary.loc[:, 'is_duplicate_minimum'] != RP_summary.loc[:, 'is_duplicate_minimum'].shift()) | (
+                RP_summary.loc[:, 'is_duplicate_maximum'] != RP_summary.loc[:, 'is_duplicate_maximum'].shift())).cumsum()
+    RP_summary.loc[:, 'is_vMIRP'] = RP_summary.loc[:, 'is_MIRP']
     RP_summary['is_vMIRP'].astype(bool)
-    RP_summary['is_vMARP'] = RP_summary['is_MARP']
+    RP_summary.loc[:, 'is_vMARP'] = RP_summary.loc[:, 'is_MARP']
     RP_summary['is_vMARP'].astype(bool)
     groups = RP_summary.groupby('group')
 
@@ -74,10 +74,10 @@ def find_RP(price, window_in_days):
                 B = (pd.DataFrame(group_df.index == index_of_max_value)).to_numpy()
                 RP_summary.loc[group_df.index, 'is_vMARP'] = B
 
-    RP_summary['is_vRP'] = RP_summary.is_vMIRP | RP_summary.is_vMARP
-    false_alarm = RP_summary[RP_summary['is_vRP'] == False]
+    RP_summary.loc[:, 'is_vRP'] = RP_summary.is_vMIRP | RP_summary.is_vMARP
+    false_alarm = RP_summary[RP_summary.loc[:, 'is_vRP'] == False]
     RP_vector.loc[false_alarm.index, ['is_MARP', 'is_MIRP']] = False
-    RP_summary = RP_summary[RP_summary['is_vRP'] == True]
+    RP_summary = RP_summary[RP_summary.loc[:, 'is_vRP'] == True]
 
     return RP_vector, RP_summary
 

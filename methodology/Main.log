@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 20.6.29) (preloaded format=pdflatex 2020.7.12)  4 AUG 2023 22:12
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 20.6.29) (preloaded format=pdflatex 2020.7.12)  6 AUG 2023 23:55
 entering extended mode
 **./Main.tex
 (Main.tex
@@ -753,14 +753,43 @@ Non-PDF special ignored!
 Non-PDF special ignored!
 <special> color cmyk 0 0 0 1.0
 ]
-<chapters/chapter1/figures/sp500_curve_126d.png, id=35, 738.5994pt x 330.2739pt
->
-File: chapters/chapter1/figures/sp500_curve_126d.png Graphic file (type png)
-<use chapters/chapter1/figures/sp500_curve_126d.png>
-Package pdftex.def Info: chapters/chapter1/figures/sp500_curve_126d.png  used o
-n input line 89.
-(pdftex.def)             Requested size: 452.9679pt x 202.55028pt.
-) [5 <./chapters/chapter1/figures/sp500_curve_126d.png>]
+<chapters/chapter1/figures/curve_GSPC_126D.png, id=35, 722.7pt x 433.62pt>
+File: chapters/chapter1/figures/curve_GSPC_126D.png Graphic file (type png)
+<use chapters/chapter1/figures/curve_GSPC_126D.png>
+Package pdftex.def Info: chapters/chapter1/figures/curve_GSPC_126D.png  used on
+ input line 91.
+(pdftex.def)             Requested size: 362.37569pt x 217.4248pt.
+<chapters/chapter1/figures/scatter_GSPC.png, id=37, 722.7pt x 578.16pt>
+File: chapters/chapter1/figures/scatter_GSPC.png Graphic file (type png)
+<use chapters/chapter1/figures/scatter_GSPC.png>
+Package pdftex.def Info: chapters/chapter1/figures/scatter_GSPC.png  used on in
+put line 98.
+(pdftex.def)             Requested size: 452.9679pt x 362.37247pt.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+<chapters/chapter1/figures/curve_DJI_126D.png, id=38, 722.7pt x 433.62pt>
+File: chapters/chapter1/figures/curve_DJI_126D.png Graphic file (type png)
+<use chapters/chapter1/figures/curve_DJI_126D.png>
+Package pdftex.def Info: chapters/chapter1/figures/curve_DJI_126D.png  used on 
+input line 108.
+(pdftex.def)             Requested size: 362.37569pt x 217.4248pt.
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+<chapters/chapter1/figures/scatter_DJI.png, id=39, 722.7pt x 578.16pt>
+File: chapters/chapter1/figures/scatter_DJI.png Graphic file (type png)
+<use chapters/chapter1/figures/scatter_DJI.png>
+Package pdftex.def Info: chapters/chapter1/figures/scatter_DJI.png  used on inp
+ut line 115.
+(pdftex.def)             Requested size: 452.9679pt x 362.37247pt.
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+) [5 <./chapters/chapter1/figures/curve_GSPC_126D.png>] [6 <./chapters/chapter1
+/figures/scatter_GSPC.png> <./chapters/chapter1/figures/curve_DJI_126D.png>]
+[7 <./chapters/chapter1/figures/scatter_DJI.png>]
 \openout2 = `chapters/chapter2/Simple_Logit_Model.aux'.
 
 
@@ -801,7 +830,7 @@ Underfull \hbox (badness 10000) has occurred while \output is active
  [][][][] 
  []
 
-[6
+[8
 
 
 
@@ -880,7 +909,7 @@ Underfull \hbox (badness 10000) has occurred while \output is active
  [][][][] 
  []
 
-[7
+[9
 
 
 Non-PDF special ignored!
@@ -949,7 +978,7 @@ Underfull \hbox (badness 10000) detected at line 45
 []
  []
 
-[8
+[10
 Non-PDF special ignored!
 <special> color cmyk 0 0 0 1.0
 Non-PDF special ignored!
@@ -997,14 +1026,14 @@ Overfull \hbox (33.63606pt too wide) in paragraph at lines 90--99
  [] 
  []
 
-) [9
+) [11
 Non-PDF special ignored!
 <special> color cmyk 0 0 0 1.0
 Non-PDF special ignored!
 <special> color cmyk 0 0 0 1.0
 Non-PDF special ignored!
 <special> color cmyk 0 0 0 1.0
-] [10] (Main.bbl
+] [12] (Main.bbl
 Underfull \vbox (badness 10000) detected at line 1
  []
 
@@ -1055,17 +1084,17 @@ Underfull \hbox (badness 10000) has occurred while \output is active
  [][][][] 
  []
 
-[11
+[13
 
 
 
 ] (Main.aux (chapters/chapter1/Trend_Identification.aux)
 (chapters/chapter2/Simple_Logit_Model.aux)) ) 
 Here is how much of TeX's memory you used:
- 3810 strings out of 480790
- 54698 string characters out of 2907055
- 302726 words of memory out of 3000000
- 19739 multiletter control sequences out of 15000+200000
+ 3837 strings out of 480790
+ 55723 string characters out of 2907055
+ 302756 words of memory out of 3000000
+ 19763 multiletter control sequences out of 15000+200000
  543621 words of font info for 64 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  30i,11n,34p,871b,293s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -1084,9 +1113,9 @@ gram Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmsl12.pfb><C:/Program Files/M
 iKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files/MiKTeX/fonts/
 type1/public/amsfonts/cm/cmsy7.pfb><C:/Program Files/MiKTeX/fonts/type1/public/
 amsfonts/cm/cmti10.pfb>
-Output written on Main.pdf (14 pages, 250138 bytes).
+Output written on Main.pdf (16 pages, 450256 bytes).
 PDF statistics:
- 116 PDF objects out of 1000 (max. 8388607)
+ 128 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 6 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 21 words of extra memory for PDF output out of 10000 (max. 10000000)
 

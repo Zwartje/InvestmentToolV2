@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 20.6.29) (preloaded format=pdflatex 2020.7.12)  6 AUG 2023 23:55
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 20.6.29) (preloaded format=pdflatex 2020.7.12)  7 AUG 2023 23:40
 entering extended mode
 **./Main.tex
 (Main.tex
@@ -787,13 +787,91 @@ ut line 115.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-) [5 <./chapters/chapter1/figures/curve_GSPC_126D.png>] [6 <./chapters/chapter1
-/figures/scatter_GSPC.png> <./chapters/chapter1/figures/curve_DJI_126D.png>]
-[7 <./chapters/chapter1/figures/scatter_DJI.png>]
+<chapters/chapter1/figures/curve_IXIC_126D.png, id=40, 722.7pt x 433.62pt>
+File: chapters/chapter1/figures/curve_IXIC_126D.png Graphic file (type png)
+<use chapters/chapter1/figures/curve_IXIC_126D.png>
+Package pdftex.def Info: chapters/chapter1/figures/curve_IXIC_126D.png  used on
+ input line 125.
+(pdftex.def)             Requested size: 362.37569pt x 217.4248pt.
+[5 <./chapters/chapter1/figures/curve_GSPC_126D.png>]
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+<chapters/chapter1/figures/scatter_IXIC.png, id=45, 722.7pt x 578.16pt>
+File: chapters/chapter1/figures/scatter_IXIC.png Graphic file (type png)
+<use chapters/chapter1/figures/scatter_IXIC.png>
+Package pdftex.def Info: chapters/chapter1/figures/scatter_IXIC.png  used on in
+put line 132.
+(pdftex.def)             Requested size: 452.9679pt x 362.37247pt.
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+<chapters/chapter1/figures/curve_GDAXI_126D.png, id=46, 722.7pt x 433.62pt>
+File: chapters/chapter1/figures/curve_GDAXI_126D.png Graphic file (type png)
+<use chapters/chapter1/figures/curve_GDAXI_126D.png>
+Package pdftex.def Info: chapters/chapter1/figures/curve_GDAXI_126D.png  used o
+n input line 143.
+(pdftex.def)             Requested size: 362.37569pt x 217.4248pt.
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+<chapters/chapter1/figures/scatter_GDAXI.png, id=47, 722.7pt x 578.16pt>
+File: chapters/chapter1/figures/scatter_GDAXI.png Graphic file (type png)
+<use chapters/chapter1/figures/scatter_GDAXI.png>
+Package pdftex.def Info: chapters/chapter1/figures/scatter_GDAXI.png  used on i
+nput line 150.
+(pdftex.def)             Requested size: 452.9679pt x 362.37247pt.
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+<chapters/chapter1/figures/curve_AEX_126D.png, id=48, 722.7pt x 433.62pt>
+File: chapters/chapter1/figures/curve_AEX_126D.png Graphic file (type png)
+<use chapters/chapter1/figures/curve_AEX_126D.png>
+Package pdftex.def Info: chapters/chapter1/figures/curve_AEX_126D.png  used on 
+input line 161.
+(pdftex.def)             Requested size: 362.37569pt x 217.4248pt.
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+<chapters/chapter1/figures/scatter_AEX.png, id=49, 722.7pt x 578.16pt>
+File: chapters/chapter1/figures/scatter_AEX.png Graphic file (type png)
+<use chapters/chapter1/figures/scatter_AEX.png>
+Package pdftex.def Info: chapters/chapter1/figures/scatter_AEX.png  used on inp
+ut line 168.
+(pdftex.def)             Requested size: 452.9679pt x 362.37247pt.
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+<chapters/chapter1/figures/curve_EURUSD=X_126D.png, id=50, 722.7pt x 433.62pt>
+File: chapters/chapter1/figures/curve_EURUSD=X_126D.png Graphic file (type png)
+
+<use chapters/chapter1/figures/curve_EURUSD=X_126D.png>
+Package pdftex.def Info: chapters/chapter1/figures/curve_EURUSD=X_126D.png  use
+d on input line 178.
+(pdftex.def)             Requested size: 362.37569pt x 217.4248pt.
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+<chapters/chapter1/figures/scatter_EURUSD=X.png, id=51, 722.7pt x 578.16pt>
+File: chapters/chapter1/figures/scatter_EURUSD=X.png Graphic file (type png)
+<use chapters/chapter1/figures/scatter_EURUSD=X.png>
+Package pdftex.def Info: chapters/chapter1/figures/scatter_EURUSD=X.png  used o
+n input line 185.
+(pdftex.def)             Requested size: 452.9679pt x 362.37247pt.
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+) [6 <./chapters/chapter1/figures/scatter_GSPC.png>] [7 <./chapters/chapter1/fi
+gures/curve_DJI_126D.png> <./chapters/chapter1/figures/scatter_DJI.png>]
+[8 <./chapters/chapter1/figures/curve_IXIC_126D.png> <./chapters/chapter1/figur
+es/scatter_IXIC.png>] [9 <./chapters/chapter1/figures/curve_GDAXI_126D.png> <./
+chapters/chapter1/figures/scatter_GDAXI.png>] [10 <./chapters/chapter1/figures/
+curve_AEX_126D.png> <./chapters/chapter1/figures/scatter_AEX.png>] [11 <./chapt
+ers/chapter1/figures/curve_EURUSD=X_126D.png> <./chapters/chapter1/figures/scat
+ter_EURUSD=X.png>]
 \openout2 = `chapters/chapter2/Simple_Logit_Model.aux'.
 
-
-(chapters/chapter2/Simple_Logit_Model.tex
+ (chapters/chapter2/Simple_Logit_Model.tex
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
@@ -830,7 +908,7 @@ Underfull \hbox (badness 10000) has occurred while \output is active
  [][][][] 
  []
 
-[8
+[12
 
 
 
@@ -909,7 +987,7 @@ Underfull \hbox (badness 10000) has occurred while \output is active
  [][][][] 
  []
 
-[9
+[13
 
 
 Non-PDF special ignored!
@@ -978,7 +1056,7 @@ Underfull \hbox (badness 10000) detected at line 45
 []
  []
 
-[10
+[14
 Non-PDF special ignored!
 <special> color cmyk 0 0 0 1.0
 Non-PDF special ignored!
@@ -1026,14 +1104,14 @@ Overfull \hbox (33.63606pt too wide) in paragraph at lines 90--99
  [] 
  []
 
-) [11
+) [15
 Non-PDF special ignored!
 <special> color cmyk 0 0 0 1.0
 Non-PDF special ignored!
 <special> color cmyk 0 0 0 1.0
 Non-PDF special ignored!
 <special> color cmyk 0 0 0 1.0
-] [12] (Main.bbl
+] [16] (Main.bbl
 Underfull \vbox (badness 10000) detected at line 1
  []
 
@@ -1084,17 +1162,17 @@ Underfull \hbox (badness 10000) has occurred while \output is active
  [][][][] 
  []
 
-[13
+[17
 
 
 
 ] (Main.aux (chapters/chapter1/Trend_Identification.aux)
 (chapters/chapter2/Simple_Logit_Model.aux)) ) 
 Here is how much of TeX's memory you used:
- 3837 strings out of 480790
- 55723 string characters out of 2907055
- 302756 words of memory out of 3000000
- 19763 multiletter control sequences out of 15000+200000
+ 3909 strings out of 480790
+ 58631 string characters out of 2907055
+ 302845 words of memory out of 3000000
+ 19827 multiletter control sequences out of 15000+200000
  543621 words of font info for 64 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  30i,11n,34p,871b,293s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -1113,9 +1191,9 @@ gram Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmsl12.pfb><C:/Program Files/M
 iKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files/MiKTeX/fonts/
 type1/public/amsfonts/cm/cmsy7.pfb><C:/Program Files/MiKTeX/fonts/type1/public/
 amsfonts/cm/cmti10.pfb>
-Output written on Main.pdf (16 pages, 450256 bytes).
+Output written on Main.pdf (20 pages, 947705 bytes).
 PDF statistics:
- 128 PDF objects out of 1000 (max. 8388607)
+ 157 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 21 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 61 words of extra memory for PDF output out of 10000 (max. 10000000)
 

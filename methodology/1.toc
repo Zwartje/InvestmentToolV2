@@ -1,5 +1,11 @@
 \chapcontentsline{chapsection}{\raggedright \ssubnumberline {1.1}Reflection Points and Trends}{3}
-\chapcontentsline{chapsection}{\raggedright \ssubnumberline {1.2}Empirical Facts of Trends}{4}
+\chapcontentsline{chapsection}{\raggedright \ssubnumberline {1.2}Empirical Facts of Trends}{5}
 \chapcontentsline{chapsubsection}{\raggedright \subnumberline {1.2.1}Stock market indices}{5}
 \chapcontentsline{chapsubsubsection}{\raggedright \subsubnumberline {1.2.1.1}S\&P 500}{5}
-\chapcontentsline{chapsubsubsection}{\raggedright \subsubnumberline {1.2.1.2}Dow Jones Industrial 30}{5}
+\chapcontentsline{chapsubsubsection}{\raggedright \subsubnumberline {1.2.1.2}Dow Jones Industrial Average}{5}
+\chapcontentsline{chapsubsubsection}{\raggedright \subsubnumberline {1.2.1.3}Nasdaq}{5}
+\chapcontentsline{chapsubsubsection}{\raggedright \subsubnumberline {1.2.1.4}DAX}{6}
+\chapcontentsline{chapsubsubsection}{\raggedright \subsubnumberline {1.2.1.5}AEX}{6}
+\chapcontentsline{chapsubsection}{\raggedright \subnumberline {1.2.2}FX Rates}{6}
+\chapcontentsline{chapsubsection}{\raggedright \subnumberline {1.2.3}Commodities}{6}
+\chapcontentsline{chapsubsection}{\raggedright \subnumberline {1.2.4}Cryptocurrencies}{6}

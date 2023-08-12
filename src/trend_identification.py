@@ -9,6 +9,7 @@ import matplotlib.pyplot as plt
 from matplotlib.dates import DateFormatter, AutoDateLocator
 
 import utils as ut
+import data_sourcer as ds
 
 # Function: find all the validated reflection points.
 def find_RP(price, window_in_days):
@@ -213,7 +214,7 @@ def trend_plot_hist(RP_summary, number_bins=20):
 def trend_identification_main(price_raw, is_month_average=False, window_in_days=63):
 
     if is_month_average:
-        price = ut.calculate_monthly_average(pd.DataFrame(price_raw))
+        price = ds.calculate_monthly_average(pd.DataFrame(price_raw))
         window = window_in_days // 21
     else:
         price = pd.DataFrame(price_raw)

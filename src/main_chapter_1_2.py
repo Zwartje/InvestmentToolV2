@@ -7,12 +7,7 @@ import os
 import matplotlib
 import matplotlib.pyplot as plt
 matplotlib.use('Agg')  # Set the non-interactive backend
-
 from tqdm import tqdm
-
-# Specifically to suppress the warning "A value is trying to be set on a copy of a slice from a DataFrame."
-pd.options.mode.chained_assignment = None  # 'warn', 'raise', None
-
 
 # read configuration
 config = ConfigParser(interpolation=ExtendedInterpolation())
@@ -56,3 +51,4 @@ for code in tqdm(code_list, desc="Processing instruments in the code list"):
 
 # Reset the warning filter to default behavior
 pd.options.mode.chained_assignment = 'warn'
+matplotlib.use('TkAgg')  # Set to the interactive backend again

@@ -11,6 +11,9 @@ from matplotlib.dates import DateFormatter, AutoDateLocator
 import utils as ut
 import data_sourcer as ds
 
+# Specifically to suppress the warning "A value is trying to be set on a copy of a slice from a DataFrame."
+pd.options.mode.chained_assignment = None  # 'warn', 'raise', None
+
 # Function: find all the validated reflection points.
 def find_RP(price, window_in_days):
     """

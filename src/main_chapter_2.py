@@ -67,9 +67,10 @@ predictors = regression_dataset_df.drop('is_upward_trend', axis=1)
 target = regression_dataset_df['is_upward_trend']
 
 # Regression
-model = LogisticRegression()
+model = LogisticRegression(max_iter=10000)
 model.fit(predictors, target)
 predictions = model.predict(predictors)
+predictions_series = pd.Series(predictions, index=target.index)
 report = classification_report(target, predictions)
 print("Classification Report:\n", report)
 

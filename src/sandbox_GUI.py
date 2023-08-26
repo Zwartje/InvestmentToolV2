@@ -6,6 +6,7 @@ import numpy as np
 
 import trend_identification as trend
 import data_sourcer as ds
+import trend_identification as trend
 
 # Function to create a sample figure
 def create_figure_1():
@@ -50,7 +51,7 @@ def button_click():
 
 # Create the main window
 root = tk.Tk()
-root.title("GUI with Figures")
+root.title("Trend identification visualizer")
 
 # Create an input field
 entry = tk.Entry(root)

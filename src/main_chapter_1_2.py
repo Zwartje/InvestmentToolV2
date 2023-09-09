@@ -46,7 +46,7 @@ for code in tqdm(code_list, desc="Processing instruments in the code list"):
     # Adjust the layout to prevent overlapping titles
     plt.tight_layout()
     # plt.show()
-    plt.savefig(os.path.join(figure_folder, f"scatter_{fig_file_name}.png"))
+    # plt.savefig(os.path.join(figure_folder, f"scatter_{fig_file_name}.png"))
     plt.close()
 
 # Reset the warning filter to default behavior

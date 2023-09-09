@@ -1,77 +1,61 @@
 import tkinter as tk
+from tkinter import ttk
 from tkinter import messagebox
-from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
-import matplotlib.pyplot as plt
-import numpy as np
+from sklearn.linear_model import LogisticRegression
+from sklearn.datasets import load_iris
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import accuracy_score
 
-import trend_identification as trend
-import data_sourcer as ds
-import trend_identification as trend
+# Function to perform logistic regression and display results
+def perform_logistic_regression():
+    # Get selected features
+    selected_features = [var.get() for var in feature_vars]
 
-# Function to create a sample figure
-def create_figure_1():
-    x = np.linspace(0, 10, 100)
-    y = np.sin(x)
-    plt.figure(figsize=(5, 3))
-    plt.plot(x, y)
-    plt.xlabel('X')
-    plt.ylabel('Y')
-    plt.title('Sample Figure 1')
-    plt.grid(True)
+    # Load a sample dataset (you can replace this with your own data)
+    data = load_iris()
+    X = data.data[:, selected_features]  # Selected predictor variables
+    y = (data.target == 2).astype(int)  # Binary outcome (e.g., 0 or 1)
 
-    # Update the figure in the embedded canvas
-    canvas.figure = plt.gcf()
-    canvas.draw()
+    # Split the data into training and testing sets
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
-def create_figure_2():
-    x = np.linspace(0, 10, 100)
-    y = np.cos(x)
-    plt.figure(figsize=(5, 3))
-    plt.plot(x, y)
-    plt.xlabel('X')
-    plt.ylabel('Y')
-    plt.title('Sample Figure 2')
-    plt.grid(True)
+    # Initialize the logistic regression model
+    model = LogisticRegression()
 
-    # Update the figure in the embedded canvas
-    canvas.figure = plt.gcf()
-    canvas.draw()
+    # Fit the model to the training data
+    model.fit(X_train, y_train)
 
-# Function to handle button click event
-def button_click():
-    input_text = entry.get()
-    if input_text:
-        try:
-            value = int(input_text)
-            messagebox.showinfo("Success", f"Input value: {value}")
-        except ValueError:
-            messagebox.showerror("Error", "Invalid input! Please enter an integer.")
-    else:
-        messagebox.showerror("Error", "Input cannot be empty!")
+    # Predict on the test data
+    y_pred = model.predict(X_test)
+
+    # Calculate accuracy
+    accuracy = accuracy_score(y_test, y_pred)
+
+    # Display results in a messagebox
+    messagebox.showinfo("Logistic Regression Results", f"Accuracy: {accuracy:.2f}")
 
 # Create the main window
 root = tk.Tk()
-root.title("Trend identification visualizer")
+root.title("Logistic Regression Calibration")
 
-# Create an input field
-entry = tk.Entry(root)
-entry.pack(pady=10)
+# Create a frame for the feature selection
+feature_frame = ttk.LabelFrame(root, text="Select Features")
+feature_frame.grid(row=0, column=0, padx=10, pady=10, sticky="w")
 
-# Create a button to trigger the function
-button = tk.Button(root, text="Submit", command=button_click)
-button.pack()
+# Load a sample dataset to get feature names (you can replace this with your own data)
+data = load_iris()
+feature_names = data.feature_names
 
-# Create buttons to display figures
-figure_button_1 = tk.Button(root, text="Show Figure 1", command=create_figure_1)
-figure_button_1.pack(pady=5)
+# Create variables to store the state of feature selection
+feature_vars = []
+for i, feature_name in enumerate(feature_names):
+    var = tk.IntVar()
+    ttk.Checkbutton(feature_frame, text=feature_name, variable=var).grid(row=i, column=0, sticky="w")
+    feature_vars.append(var)
 
-figure_button_2 = tk.Button(root, text="Show Figure 2", command=create_figure_2)
-figure_button_2.pack(pady=5)
+# Create a button to perform logistic regression
+calibrate_button = ttk.Button(root, text="Calibrate Logistic Regression", command=perform_logistic_regression)
+calibrate_button.grid(row=1, column=0, padx=10, pady=10)
 
-# Create a FigureCanvasTkAgg widget to embed the figure in the main window
-fig, ax = plt.subplots(figsize=(5, 3))
-canvas = FigureCanvasTkAgg(fig, master=root)
-canvas.get_tk_widget().pack()
-
-# Run the GUI main loop
+# Start the GUI main loop
 root.mainloop()

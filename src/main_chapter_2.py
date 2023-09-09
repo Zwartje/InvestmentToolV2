@@ -4,10 +4,11 @@ import pandas_datareader.data as web
 import data_sourcer as ds
 import trend_identification as trend
 from tqdm import tqdm
+import matplotlib.pyplot as plt
 
 from sklearn.linear_model import LogisticRegression
 from sklearn.model_selection import train_test_split
-from sklearn.metrics import classification_report
+from sklearn import metrics
 
 # Specifically to suppress the warning "A value is trying to be set on a copy of a slice from a DataFrame."
 pd.options.mode.chained_assignment = None  # 'warn', 'raise', None
@@ -47,7 +48,7 @@ for series_id in tqdm(section_data, desc="Processing variables in the series ID 
 risk_drivers_list = []
 for variable in tqdm(economic_variables_list, desc="Collecting variables as risk drivers"):
     risk_drivers_list.append(variable.data)
-    risk_drivers_list.append(variable.data_yoy)
+    # risk_drivers_list.append(variable.data_yoy)
     risk_drivers_list.append(variable.data_r_p)
 
 risk_drivers_df = pd.concat(risk_drivers_list, axis=1, join='inner')
@@ -67,14 +68,26 @@ predictors = regression_dataset_df.drop('is_upward_trend', axis=1)
 target = regression_dataset_df['is_upward_trend']
 
 # Regression
-model = LogisticRegression(max_iter=10000)
+model = LogisticRegression(max_iter=100000)
 model.fit(predictors, target)
 predictions = model.predict(predictors)
 predictions_series = pd.Series(predictions, index=target.index)
-report = classification_report(target, predictions)
+
+# Evaluation
+report = metrics.classification_report(target, predictions)
 print("Classification Report:\n", report)
 
+logits = model.decision_function(predictors)
+y_pred_proba = model.predict_proba(predictors)[::,1]
+fpr, tpr, _ = metrics.roc_curve(target,  y_pred_proba)
+auc = metrics.roc_auc_score(target, y_pred_proba)
+plt.plot(fpr,tpr,label="data 1, auc="+str(auc))
+plt.legend(loc=4)
+plt.show()
 
+plt.figure()
+plt.scatter(logits, y_pred_proba, alpha=0.3)
+plt.scatter(logits, target, alpha=0.3)
 
 
 

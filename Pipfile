@@ -43,6 +43,7 @@ virtualenv-clone = "==0.5.7"
 webencodings = "==0.5.1"
 yfinance = "==0.2.27"
 scikit-learn = "*"
+ttkthemes = "*"
 
 [dev-packages]
 

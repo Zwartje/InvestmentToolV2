@@ -4,6 +4,7 @@
 
 import pandas as pd
 import numpy as np
+import scipy.stats as stats
 import matplotlib
 import matplotlib.pyplot as plt
 from matplotlib.dates import DateFormatter, AutoDateLocator
@@ -99,6 +100,7 @@ def calculate_trend_return(RP_summary):
     RP_summary.loc[RP_summary['is_MIRP'], 'return_type'] = 'loss'
     RP_summary.loc[RP_summary['is_MARP'], 'return_type'] = 'gain'
     RP_summary['duration'] = pd.to_datetime(RP_summary.index).to_series().diff().dt.days
+    RP_summary.dropna(subset=['return'], inplace=True)  # remove potential rows containing nan
     return RP_summary
 
 
@@ -118,13 +120,53 @@ def assign_trend(RP_vector, RP_summary):
     return RP_vector, RP_summary
 
 
+def count_trend_time(RP_vector):
+    """
+    This function counts the time (number of days/months) since the start of the current trend.
+    :param RP_vector: the price curve WITH the trend indicator. The function first assesses whether the is_upward_trend column exists.
+    :return: RP_vector: the updated RP_vector with the time since the start of trend.
+    """
+    assert 'is_upward_trend' in RP_vector.columns, f"The trend indicator is NOT in the columns of the input!"
+    # Create a mask for changes in the time series column
+    mask = RP_vector['is_upward_trend'] == RP_vector['is_upward_trend'].shift(1)
+    # Initialize a counter column
+    RP_vector['Time_since_trend_start'] = 0
+    # Calculate consecutive count using cumulative sum of the mask
+    RP_vector['Time_since_trend_start'] = mask.groupby((mask != mask.shift()).cumsum()).cumsum()
+    return RP_vector
+
+
+def current_state_in_trend(date_of_interest, nth_last_RP: int, RP_vector, RP_summary):
+    """
+
+    :param date_of_interest:
+    :param nth_last_RP: the n-th last RP that the state on date of interest is compared. Should be int. Currently we restrict it to be between 1 and 5.
+    :param RP_vector:
+    :param RP_summary:
+    :return a series of variables of interest
+    """
+    date = pd.to_datetime(date_of_interest)
+    assert nth_last_RP in {1, 2, 3, 4, 5}, "nth_last_RP must be an integer in the range {1, 2, 3, 4, 5}"
+    trend_start_row_index = RP_summary.index.get_loc(RP_summary[RP_summary.index < date].index[-nth_last_RP])
+    current_date_row_index = RP_vector.index.get_loc(RP_vector[RP_vector.index <= date].index[-nth_last_RP])
+    current_return = (RP_vector.iloc[current_date_row_index, 0] - RP_summary.iloc[trend_start_row_index, 0]) / RP_vector.iloc[current_date_row_index, 0]
+    current_return_type = 'gain' if current_return > 0 else 'loss'
+    current_duration = date - (RP_summary[RP_summary.index < date].index[-nth_last_RP])
+    current_duration_in_days = current_duration.days
+    current_return_percentile_raw = stats.percentileofscore(RP_summary.loc[RP_summary.return_type == current_return_type, 'return'], current_return, kind='rank')
+    current_return_percentile = current_return_percentile_raw if current_return_type == 'gain' else 100 - current_return_percentile_raw
+    current_duration_percentile = stats.percentileofscore(RP_summary.loc[RP_summary.return_type == current_return_type, 'duration'], current_duration_in_days, kind='rank')
+
+    return [current_return, current_duration_in_days, current_return_percentile / 100, current_duration_percentile / 100]
+
+
 # Function: plot the price curve with indication of trends
 def trend_plot_curve(RP_vector, RP_summary, window_in_days):
     """
     This function plots the entire price curve with indication of each identified upward / downward trend.
     :param RP_vector: the location (i.e. date) of the validated reflection points, together with the full price vector.
     :param RP_summary: the list of (only) the validated reflection points.
-    :return pop-up figure
+    :return a plt object.
     """
     MIRP_dates = RP_summary[RP_summary['is_MIRP']].index.tolist()
     MARP_dates = RP_summary[RP_summary['is_MARP']].index.tolist()
@@ -215,6 +257,14 @@ def trend_plot_hist(RP_summary, number_bins=20):
 
 
 def trend_identification_main(price_raw, is_month_average=False, window_in_days=63):
+
+    """
+    This function mainly summarizes all the steps to perform the trend identification; see the concrete functions below.
+    :param price_raw: the entire historical price curve. It is deliberately designed to be detached from the data collection steps.
+    :param is_month_average: whether the trend identification is performed on an MA curve; boolean variable.
+    :param window_in_days:
+    :return: the RP_vector and RP_summary, containing the information of identified trend info.
+    """
 
     if is_month_average:
         price = ds.calculate_monthly_average(pd.DataFrame(price_raw))

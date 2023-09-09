@@ -14,10 +14,8 @@ def download_stock_price_daily_close(code, start_date, end_date):
     try:
         # Download data for the S&P 500 index
         price = yf.download(code, start=start_date, end=end_date)
-
         # Select the 'Close' column from the DataFrame
         daily_close_prices = price['Close']
-
         return daily_close_prices
     except Exception as e:
         print("An error occurred:", e)

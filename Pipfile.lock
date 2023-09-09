@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "d14111761888c0a1693121439a74c9df1f47e09423be95638d416139975a73db"
+            "sha256": "821ee7524b0d87ae4a7ddd2612a48a0b01c924420a414d3d634501ab23f204d5"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -774,11 +774,11 @@
         },
         "setuptools": {
             "hashes": [
-                "sha256:3d4dfa6d95f1b101d695a6160a7626e15583af71a5f52176efa5d39a054d475d",
-                "sha256:3d8083eed2d13afc9426f227b24fd1659489ec107c0e86cec2ffdde5c92e790b"
+                "sha256:00478ca80aeebeecb2f288d3206b0de568df5cd2b8fada1209843cc9a8d88a48",
+                "sha256:af3d5949030c3f493f550876b2fd1dd5ec66689c4ee5d5344f009746f71fd5a8"
             ],
             "markers": "python_version >= '3.8'",
-            "version": "==68.1.2"
+            "version": "==68.2.0"
         },
         "six": {
             "hashes": [
@@ -811,6 +811,13 @@
             ],
             "index": "pypi",
             "version": "==4.66.1"
+        },
+        "ttkthemes": {
+            "hashes": [
+                "sha256:01daed001f2ff0e4f32832a0d9ea48176c0c505203b030756bdde3bd1bcb21d2"
+            ],
+            "index": "pypi",
+            "version": "==3.2.2"
         },
         "tzdata": {
             "hashes": [
